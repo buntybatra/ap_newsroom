@@ -1,0 +1,47 @@
+<?php
+
+use Drupal\Core\Form\FormStateInterface;
+
+/**
+ * Implements hook_form_FORM_ID_alter()
+ * @param $form
+ * @param FormStateInterface $form_state
+ * @param $form_id
+ *
+ */
+function ap_newsroom_clone_form_ap_newsroom_base_config_alter(&$form, FormStateInterface $form_state, $form_id){
+
+  // Add dashboard related configurations.
+  $config = \Drupal::config('ap_newsroom.base_config');
+  $form['ap_dashboard'] = array(
+    '#type' => 'fieldset',
+    '#title' => t('AP newsroom Dashboard configurations')
+  );
+
+  $form['ap_dashboard']['ap_dashboard_page_size'] = array(
+    '#type' => 'textfield',
+    '#title' => t('Page size'),
+    '#default_value' => $config->get('ap_dashboard_page_size'),
+    '#required' => TRUE,
+    '#description' => t('Number of items per page.'),
+  );
+  $form['ap_dashboard']['use_feed'] = array(
+    '#type' => 'checkbox',
+    '#title' => t('Use feed API.'),
+    '#default_value' => $config->get('use_feed'),
+    '#description' => t('Check if feed API to be used instead of search API in ap dashboard list.')
+  );
+  $form['#submit'][] = '_save_dashboard_configuration';
+}
+
+/**
+ * Custom submit handler for dashboard configuration.
+ * @param $form
+ * @param FormStateInterface $form_state
+ */
+function _save_dashboard_configuration(&$form, FormStateInterface $form_state) {
+  $config = \Drupal::configFactory()->getEditable('ap_newsroom.base_config');
+  $config->set('ap_dashboard_page_size', $form_state->getValue('ap_dashboard_page_size'))
+    ->set('use_feed', $form_state->getValue('use_feed'))
+    ->save();
+}

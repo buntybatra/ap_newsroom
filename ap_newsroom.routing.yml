@@ -1,0 +1,7 @@
+ap_newsroom.feed.ap_newsroom_config:
+  path: '/admin/config/services/ap_newsroom'
+  defaults:
+    _form: '\Drupal\ap_newsroom\Form\ApNewsroomConfigForm'
+    _title: 'AP Newsroom API Setting'
+  requirements:
+    _permission: 'access administration pages'

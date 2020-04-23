@@ -1,0 +1,6 @@
+ap_newsroom_clone.dashboard:
+  title: 'AP Dashboard'
+  route_name: ap_newsroom_clone.dashboard
+  description: 'AP Dashboard lists the feeds available at AP online and also provides a search feature for searching feeds over AP Online.'
+  base_route: system.admin_content
+  weight: 3

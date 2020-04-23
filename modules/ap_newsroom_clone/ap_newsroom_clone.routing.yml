@@ -1,0 +1,26 @@
+ap_newsroom_clone.dashboard:
+  path: '/admin/content/ap-dashboard'
+  defaults:
+    title: 'AP newsroom dashboard'
+    _controller: '\Drupal\ap_newsroom_clone\Controller\ApDashboardController::listFeeds'
+  requirements:
+    _access: 'TRUE'
+  options:
+    _admin_route: 'TRUE'
+ap_newsroom_clone.pager:
+  path: '/admin/content/updateData/{qt}/{page_num}'
+  defaults:
+    title: 'AP Feeds List'
+    _controller: '\Drupal\ap_newsroom_clone\Controller\ApDashboardController::updateData'
+  requirements:
+    _access: 'TRUE'
+  options:
+    _admin_route: 'TRUE'
+ap_newsroom_clone.clone_content:
+  path: '/clone/node/{entity_type}'
+  defaults:
+    _controller: '\Drupal\ap_newsroom_clone\Controller\ApNewsroomCloneController::cloneContent'
+  requirements:
+    _access: 'TRUE'
+  options:
+    _admin_route: TRUE

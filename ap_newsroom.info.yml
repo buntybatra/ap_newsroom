@@ -1,0 +1,6 @@
+name: 'AP Newsroom'
+type: module
+description: 'Integrate Ap newsroom with drupal.'
+core: '8.x'
+package: ApNewsroom
+configure: ap_newsroom.feed.ap_newsroom_config

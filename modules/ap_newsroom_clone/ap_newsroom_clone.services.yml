@@ -1,0 +1,7 @@
+services:
+  ap_newsroom_clone.ap_newsroom_service:
+    class: Drupal\ap_newsroom_clone\ApDashboardService
+    arguments: ['@config.factory', '@logger.factory', '@messenger', '@request_stack', '@entity_type.manager', '@ap_newsroom.ap_newsroom_content_service', '@http_client_factory', '@date.formatter']
+  ap_newsroom_clone.entity.form_builder:
+    class: Drupal\ap_newsroom_clone\Entity\FeedCloneEntityFormBuilder
+    arguments: ['@form_builder', '@config.factory', '@entity_type.manager']

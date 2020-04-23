@@ -1,0 +1,6 @@
+ap_newsroom.feed.ap_newsroom_config:
+  title: 'Ap newsroom setting'
+  route_name: ap_newsroom.feed.ap_newsroom_config
+  description: 'Ap newsroom configuration setting form.'
+  parent: system.admin_config_services
+  weight: 100

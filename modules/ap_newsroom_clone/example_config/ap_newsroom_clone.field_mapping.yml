@@ -1,0 +1,39 @@
+node:
+  article:
+    fields:
+      -
+        id: title
+        type: text
+        path: item.headline
+      -
+        id: field_headline_extended
+        type: text
+        path: item.headline_extended
+      -
+        id: field_image
+        type: image
+        multiple: true
+      -
+        id: body
+        type: nitf
+      -
+        id: field_para_content
+        type: paragraphs
+        paragraph_list:
+          paragraphs_body:
+            fields:
+              -
+                id: field_para_body
+                type: nitf
+          para_image:
+            fields:
+              -
+                id: field_para_image
+                type: image
+                multiple: false
+  page:
+    fields:
+      -
+        id: title
+        type: text
+        path: item.headline

@@ -1,0 +1,5 @@
+ap_newsroom_clone.admin:
+  title: 'Ap Dashboard'
+  route_name: ap_newsroom_clone.dashboard
+  parent: system.admin_content
+  description: 'List and clone Ap newsroom content.'
