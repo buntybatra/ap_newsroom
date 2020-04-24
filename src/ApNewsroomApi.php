@@ -37,7 +37,7 @@ class ApNewsroomApi {
   /**
    * Base URL for AP newsroom
    */
-  const BASE_URL = "https://api.ap.org/media/";
+  const AP_BASE_URL = "https://api.ap.org/media/";
 
   /**
    * API url not correct.
@@ -140,7 +140,7 @@ class ApNewsroomApi {
    * @return string
    */
   public function getBaseUrl($api_type) {
-    $base_url = self::BASE_URL;
+    $base_url = self::AP_BASE_URL;
     $api_ver = $this->getApiVersion();
     if($api_ver) {
       $base_url .= $api_ver . "/$api_type/";
