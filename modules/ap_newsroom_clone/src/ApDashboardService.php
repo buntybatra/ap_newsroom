@@ -10,6 +10,7 @@ use Drupal\Component\Utility\UrlHelper;
 use Drupal\Core\Config\ConfigFactoryInterface;
 use Drupal\Core\Datetime\DateFormatter;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
+use Drupal\Core\File\FileSystemInterface;
 use Drupal\Core\Http\ClientFactory;
 use Drupal\Core\Link;
 use Drupal\Core\Logger\LoggerChannelFactory;
@@ -298,7 +299,7 @@ class ApDashboardService {
         ])->get($image_url);
         $redirected_url = $actual_uri . '&apikey=' . $api_key;
         $data = file_get_contents($redirected_url);
-        $file = file_save_data($data, "public://$item_id.jpeg", FILE_EXISTS_REPLACE);
+        $file = file_save_data($data, "public://$item_id.jpeg", FileSystemInterface::EXISTS_REPLACE);
         return [
           'target_id' => $file->id(),
           'alt'       => $alt_text,
