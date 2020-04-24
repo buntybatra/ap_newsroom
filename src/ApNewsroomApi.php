@@ -7,6 +7,7 @@ use Drupal\Core\Logger\LoggerChannelFactory;
 use Drupal\Core\Messenger\MessengerInterface;
 use Drupal\Core\Url;
 use Drupal\Core\Utility\Error;
+use GuzzleHttp\Client;
 use GuzzleHttp\Exception\RequestException;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
@@ -52,6 +53,11 @@ class ApNewsroomApi {
   protected $exception_msg = "Something has been wrong with AP News. Please contact Site Admin. AP News responded with status code :- @code";
 
   /**
+   * @var Client
+   */
+  protected $http_client;
+
+  /**
    * @inheritDoc
    * @param ContainerInterface $container
    * @return static
@@ -61,7 +67,8 @@ class ApNewsroomApi {
     return new static(
       $container->get('config.factory'),
       $container->get('logger.factory'),
-      $container->get('messenger')
+      $container->get('messenger'),
+      $container->get('http_client')
     );
   }
 
@@ -71,10 +78,11 @@ class ApNewsroomApi {
    * @param LoggerChannelFactory $logger_factory
    * @param MessengerInterface $messenger
    */
-  public function __construct(ConfigFactoryInterface $configFactory, LoggerChannelFactory $logger_factory, MessengerInterface $messenger) {
+  public function __construct(ConfigFactoryInterface $configFactory, LoggerChannelFactory $logger_factory, MessengerInterface $messenger,Client $http_client) {
     $this->config_factory = $configFactory;
     $this->loggerFactory = $logger_factory;
     $this->messenger = $messenger;
+    $this->http_client = $http_client;
   }
 
   /**
@@ -89,7 +97,7 @@ class ApNewsroomApi {
     }
 
     try {
-      $response = \Drupal::httpClient()->get($url);
+      $response = $this->http_client->get($url);
       $data = $response->getBody();
       if (empty($data)) {
         return FALSE;

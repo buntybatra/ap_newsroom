@@ -1,7 +1,7 @@
 services:
   ap_newsroom.ap_newsroom_api_service:
     class: Drupal\ap_newsroom\ApNewsroomApi
-    arguments: ['@config.factory', '@logger.factory', '@messenger']
+    arguments: ['@config.factory', '@logger.factory', '@messenger', '@http_client']
   ap_newsroom.ap_newsroom_account_service:
     class: Drupal\ap_newsroom\ApNewsroomAccount
     arguments: ['@config.factory', '@logger.factory', '@messenger', '@ap_newsroom.ap_newsroom_api_service']
